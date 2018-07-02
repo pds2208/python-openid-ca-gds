@@ -43,23 +43,23 @@ def oauth_callback(provider):
         return redirect(url_for('index'))
 
     oauth = OAuthSignIn.get_provider(provider)
-    next_page, username, email, family_name, nickname, preferred_username, error, error_description = oauth.callback()
+    result = oauth.callback()
 
-    if email is None or error is not None:
+    if result.get('error'):
         # Need a valid email address for user identification
-        return redirect(url_for('index', error=error + ": " + error_description))
+        return redirect(url_for('index', error=result['error'] + ": " + result['error_description']))
 
-    app.user = User.find_or_create_by_email(email)
-    app.user.username = username
-    app.user.family_name = family_name
-    app.user.nickname = nickname
-    app.user.preferred_username = preferred_username
+    app.user = User.find_or_create_by_email(result['email'])
+    app.user.username = result['name']
+    app.user.family_name = result['family_name']
+    app.user.nickname = result['nickname']
+    app.user.preferred_username = result['preferred_username']
 
     # Log in the user, by default remembering them for their next visit
     # unless they log out.
     login_user(app.user, remember=True)
 
-    return redirect(next_page)
+    return redirect(result['next_page'])
 
 
 @app.context_processor

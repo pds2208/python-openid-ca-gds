@@ -5,7 +5,7 @@ import urllib.request as urllib2
 import json
 
 
-class OAuthSignIn(object):
+class OAuthSignIn:
     providers = None
 
     def __init__(self, provider_name):
@@ -66,10 +66,10 @@ class CASignIn(OAuthSignIn):
         # Check if cancelled or invalid UID / password
         error = request.args.get('error')
         if error:
-            return None, None, None, None, None, None, error, request.args.get("error_description")
+            return {'error': error, 'error_description': request.args.get("error_description")}
 
         if 'code' not in request.args:
-            return None, None, None, None, None, None
+            return {'error': error, 'error_description': 'code not returned from OAuth server'}
 
         oauth_session = self.service.get_auth_session(
             data={'code': request.args['code'],
@@ -80,5 +80,4 @@ class CASignIn(OAuthSignIn):
         )
 
         me = oauth_session.get('').json()
-        return self.next_page, me['name'], me['email'], \
-               me['family_name'], me['nickname'], me['preferred_username'], None, None
+        return {**{"next_page": self.next_page}, **me}
