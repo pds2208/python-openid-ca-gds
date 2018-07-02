@@ -3,8 +3,7 @@
     {% if uri %}
 
         <a href="{{ uri }}">
-            <img src="/static/img/icon-arrow-left.svg" alt="Previous Page"/>
-            <button class="btn btn--link">
+            <button class="govuk-back-link">
                 {{ caption }}
             </button>
 
@@ -12,8 +11,7 @@
 
     {% elif href %}
 
-        <img src="/static/img/icon-arrow-left.svg" alt="Previous Page"/>
-        <a href="{{ href }}" class="btn btn--link">
+        <a href="{{ href }}" class="govuk-back-link">
             {{ caption }}
         </a>
 

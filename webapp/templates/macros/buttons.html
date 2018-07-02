@@ -7,15 +7,23 @@
 
 {% macro primary(caption="", uri=None, href=None) %}
 
-    {% call _render_button('btn btn--primary', uri, href) %}
+    {% call _render_button('govuk-button', uri, href) %}
         {{ caption|e }}
     {% endcall %}
 
 {% endmacro %}
 
+{% macro start(caption="", uri=None) %}
+
+    <a href="{{ uri }}" role="button" class='govuk-button govuk-button--start'>
+        {{ caption|e }}
+    </a>
+
+{% endmacro %}
+
 {% macro primaryLarge(caption="", uri=None, href=None) %}
 
-    {% call _render_button('btn btn--primary btn--lg', uri, href) %}
+    {% call _render_button('govuk-button govuk-button--start', uri, href) %}
         {{ caption|e }}
     {% endcall %}
 

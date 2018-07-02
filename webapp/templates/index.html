@@ -4,9 +4,9 @@
 
     <section>
 
-        <div class="main-content">
+        <div class="govuk-width-container">
+            <main class="govuk-main-wrapper " id="main-content" role="main">
 
-            <div class="wrapper narrow">
                 {% if error %}
 
                     {{ message.error('Login Problem', error, 'Please try again.') }}
@@ -28,11 +28,11 @@
                     {{ spacing.medium() }}
                     {{ heading.three('Welcome. Click on the Button Below to View your Shopping List') }}
                     {{ spacing.medium() }}
-                    {{ buttons.primary(caption="Shopping List", uri=url_for('oauth_authorise', provider='CA', nextPage='shopping')) }}
+                    {{ buttons.start(caption="Shopping List", uri=url_for('oauth_authorise', provider='CA', nextPage='shopping')) }}
 
                 {% endif %}
 
-            </div>
+            </main>
 
         </div>
 

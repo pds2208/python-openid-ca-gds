@@ -1,19 +1,22 @@
 {% macro error(caption=None) %}
 
-<div class="collator-item">
-    <div class="panel panel--error">
-        <div class="panel__header">
+
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" data-module="error-summary">
+        <h2 class="govuk-error-summary__title" id="error-summary-title">
             {% if caption %}
                 <div class="venus">{{ caption|e }}</div>
             {% endif %}
-        </div>
-        <div class="panel__body">
-            {% for message in varargs %}
-                <p class="mars">{{ message|e }}</p>
-            {% endfor %}
+        </h2>
+        <div class="govuk-error-summary__body">
+            <ul class="govuk-list govuk-error-summary__list">
+                {% for message in varargs %}
+                    <li>{{ message|e }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
-</div>
+
+
 
 {% endmacro %}
 
