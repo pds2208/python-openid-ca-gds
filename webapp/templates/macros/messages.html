@@ -1,0 +1,19 @@
+{% macro error(caption=None) %}
+
+<div class="collator-item">
+    <div class="panel panel--error">
+        <div class="panel__header">
+            {% if caption %}
+                <div class="venus">{{ caption|e }}</div>
+            {% endif %}
+        </div>
+        <div class="panel__body">
+            {% for message in varargs %}
+                <p class="mars">{{ message|e }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endmacro %}
+

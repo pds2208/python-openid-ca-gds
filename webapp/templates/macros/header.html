@@ -1,0 +1,32 @@
+{% macro header(serviceName=None, serviceDescription=None) %}
+
+    <header class="page__header">
+
+        <div class="logo_container">
+            <div class="wrapper narrow">
+                <div class="group">
+                    <div class="col-8">
+                        <div class="logo_header">
+                            <img src="/static/img/logo.svg" alt="Office for National Statistics" class="logo__img"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="primary_header">
+            <div class="wrapper narrow">
+                <div class="group">
+                    {% if serviceName %}
+                        <p class="jupiter top service_name">{{ serviceName|e }}</p>
+                    {% endif %}
+                    {% if serviceDescription %}
+                        <p class="neptune service_description">{{ serviceDescription|e }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+{% endmacro %}

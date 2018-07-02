@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <section>
+
+        <div class="main-content">
+
+            <div class="wrapper narrow">
+                {% if error %}
+
+                    {{ message.error('Login Problem', error, 'Please try again.') }}
+
+                {% endif %}
+
+                {% if current_user.is_authenticated and ca_user.nickname %}
+
+                    <fieldset class="govuk-fieldset">
+                        <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+                            {% set message = 'You are already logged in ' + ca_user.nickname %}
+                            {{ heading.three(message) }}
+                        </legend>
+                        {{ spacing.medium() }}
+                        {{ buttons.primary(caption="Continue to Shopping List", href="shopping") }}
+                    </fieldset>
+
+                {% else %}
+                    {{ spacing.medium() }}
+                    {{ heading.three('Welcome. Click on the Button Below to View your Shopping List') }}
+                    {{ spacing.medium() }}
+                    {{ buttons.primary(caption="Shopping List", uri=url_for('oauth_authorise', provider='CA', nextPage='shopping')) }}
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </section>
+
+{% endblock %}

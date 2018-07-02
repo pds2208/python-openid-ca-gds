@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div>
+        <div class="page__container container">
+
+            {{ spacing.tiny() }} {{ links.back(caption="Back", href="/") }}
+
+            {% if ca_user %}
+                {% if ca_user.nickname %}
+                    {% set user = 'Welcome ' + ca_user.nickname + ', your shopping list awaits you.' %}
+                {% else %}
+                    {% set user = 'Welcome ' + ca_user.username + ', your shopping list awaits you.' %}
+                {% endif %}
+            {% endif %}
+
+            {{ spacing.small() }} {{ heading.three(user) }}
+
+            <div class="collator-item" style="width:60%;">
+                <table class="table" >
+                    <thead class="table--head">
+                    <tr>
+                        <th scope="col" class="table--header--cell">Item Description</th>
+                        <th scope="col" class="table--header--cell" style="text-align: right;">Budgeted Cost</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in products %}
+                        <tr class="table--row">
+                            <td class="table--cell">{{ item.item }}</td>
+                            <td class="table--cell" style="text-align: right;">&pound;{{ "{:,}".format(item.price)  }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {{ spacing.small() }} {{ buttons.primary(caption="Logout", href="logout") }}
+        </div>
+
+    </div>
+
+{% endblock %}

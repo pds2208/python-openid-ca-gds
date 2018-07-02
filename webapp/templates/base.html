@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>OpenID Connect Demo</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/favicons/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" href="/static/img/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicons/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='img/favicons/manifest.json') }}">
+    <link rel="mask-icon" href="{{ url_for('static', filename='img/favicons/safari-pinned-tab.svg') }}" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="https://cdn.ons.gov.uk/sdc/8f80aaa/css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/registers-main.css') }}">
+
+    <!--[if gt IE 8]><!-->
+    <script>document.documentElement.className = document.documentElement.className.replace('no-js', 'has-js')</script>
+    <!--<![endif]-->
+
+    <!-- to stop the annoying shift when the scrollbar is shown -->
+    <style>
+        html{
+            height:101%;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% import 'macros/links.html'    as links %}
+    {% import 'macros/buttons.html'  as buttons %}
+    {% import 'macros/heading.html'  as heading %}
+    {% import 'macros/spacing.html'  as spacing %}
+    {% import 'macros/messages.html' as message %}
+
+    {% from "macros/header.html" import header %}
+    {% from "macros/footer.html" import footer %}
+
+    {{ header(serviceName="OpenID Connect",
+                serviceDescription='OpenID Connect Demonstration Application') }}
+
+    {% block content %}{% endblock %}
+
+    {{ footer() }}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src='https://cdn.ons.gov.uk/sdc/0bceacd/scripts/bundle.min.js'></script>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+
+{# Use like:
+            {{ primaryButton(caption="Whatever", uri=url_for('oauth_authorise', provider='CA', nextPage='shopping')) }}
+        or
+            {{ primaryButton(caption="Whatever", href='/shopping') }}
+#}
+
+{% macro primary(caption="", uri=None, href=None) %}
+
+    {% call _render_button('btn btn--primary', uri, href) %}
+        {{ caption|e }}
+    {% endcall %}
+
+{% endmacro %}
+
+{% macro primaryLarge(caption="", uri=None, href=None) %}
+
+    {% call _render_button('btn btn--primary btn--lg', uri, href) %}
+        {{ caption|e }}
+    {% endcall %}
+
+{% endmacro %}
+
+{% macro secondary(caption="", uri=None, href=None) %}
+
+    {% call _render_button('btn btn--secondary btn--border', uri, href) %}
+        {{ caption|e }}
+    {% endcall %}
+
+{% endmacro %}
+
+{% macro disabled(caption="", uri=None, href=None) %}
+
+    {% call _render_button('btn btn--neutral', uri, href) %}
+        {{ caption|e }}
+    {% endcall %}
+
+{% endmacro %}
+
+{% macro link(caption="", uri=None, href=None) %}
+
+    {% call _render_button('btn btn--link', uri, href) %}
+        {{ caption|e }}
+    {% endcall %}
+
+{% endmacro %}
+
+
+{% macro _render_button (class, uri, href) %}
+
+    {% if uri %}
+
+        <a href="{{ uri }}">
+            <button type="submit" class={{ class }}>
+                {{ caller() }}
+            </button>
+        </a>
+
+    {% elif href %}
+
+        <a href="{{ href }}" role="button" class={{ class }}>
+            {{ caller() }}
+        </a>
+
+    {% endif %}
+
+{% endmacro %}
