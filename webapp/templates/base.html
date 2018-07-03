@@ -42,28 +42,29 @@
 </head>
 
 <body class="govuk-template__body ">
-<script>
-    document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
-</script>
 
-{% import 'macros/links.html'    as links %}
-{% import 'macros/buttons.html'  as buttons %}
-{% import 'macros/heading.html'  as heading %}
-{% import 'macros/spacing.html'  as spacing %}
-{% import 'macros/messages.html' as message %}
+    <script>
+        document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');
+    </script>
 
-{% from "macros/header.html" import header %}
-{% from "macros/footer.html" import footer %}
+    {% import 'macros/links.html' as links %}
+    {% import 'macros/buttons.html' as buttons %}
+    {% import 'macros/heading.html' as heading %}
+    {% import 'macros/spacing.html' as spacing %}
+    {% import 'macros/messages.html' as message %}
 
-{{ header(serviceName="OpenID Connect",
-                serviceDescription='OpenID Connect Demonstration Application') }}
+    {% from "macros/header.html" import header %}
+    {% from "macros/footer.html" import footer %}
 
-{% block content %}{% endblock %}
+    {{ header(serviceName="OpenID Connect",
+                    serviceDescription='OpenID Connect Demonstration Application') }}
 
-{{ footer() }}
+    {% block content %}{% endblock %}
 
-<script src="{{url_for('static', filename='js/govuk-frontend-1.0.0.min.js')}}"></script>
-<script>window.GOVUKFrontend.initAll()</script>
+    {{ footer() }}
+
+    <script src="{{url_for('static', filename='js/govuk-frontend-1.0.0.min.js')}}"></script>
+    <script>window.GOVUKFrontend.initAll()</script>
 
 </body>
 
